@@ -40,10 +40,12 @@ int main(int argc, char *argv[]) {
         if (send(sock, &sellerNumber, sizeof(sellerNumber), 0) != sizeof(sellerNumber)) {
             DieWithError("send() failed");
         }
+        printf("I sent %d seller number\n", sellerNumber);
 
         if ((bytesRcvd = recv(sock, &sellerNumber, sizeof(sellerNumber), 0)) <= 0) {
             DieWithError("recv() failed or connection closed prematurely");
         }
+        printf("I received %d seller number\n", sellerNumber);
 
         totalBytesRcvd += bytesRcvd; /* Keep tally of total bytes */
     }

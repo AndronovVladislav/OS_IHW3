@@ -43,6 +43,7 @@ void HandleTCPClient2(int clntSocket, int clientsAmount, int obsrvSock) {
     if (recv(clntSocket, &sellerNumber, sizeof(sellerNumber), 0) < 0) {
         DieWithError("recv() failed");
     }
+    printf("I received %d seller number\n", sellerNumber);
 
     for (int i = 0; i < clientsAmount; ++i) {
         if (clients[i].currentSeller <= 2 && clients[i].sellersToVisit[clients[i].currentSeller] == sellerNumber) {
@@ -54,10 +55,12 @@ void HandleTCPClient2(int clntSocket, int clientsAmount, int obsrvSock) {
     if (send(clntSocket, &sellerNumber, sizeof(sellerNumber), 0) != sizeof(sellerNumber)) {
         DieWithError("send1() failed");
     }
+    printf("I sent %d seller number to client\n", sellerNumber);
 
     if (send(obsrvSock, &sellerNumber, sizeof(sellerNumber), 0) != sizeof(sellerNumber)) {
         DieWithError("send2() failed");
     }
+    printf("I sent %d seller number to observer\n", sellerNumber);
 
     close(clntSocket);
 }
