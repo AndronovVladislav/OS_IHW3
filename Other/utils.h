@@ -47,11 +47,13 @@ void (*prevHandler)(int);
 // sem_t *sellers[3] = {NULL, NULL, NULL};
 // sem_t *sellers_shm;
 
-
 void DieWithError(char *errorMessage);  /* Error handling function */
-void HandleTCPClient(int clntSocket, int clientsAmount);   /* TCP client handling function */
+void HandleTCPClient1(int clntSocket, int clientsAmount);   /* TCP client handling function */
+void HandleTCPClient2(int clntSocket, int clientsAmount, int obsrvSock);   /* TCP client handling function */
 int CreateTCPServerSocket(unsigned short port); /* Create TCP server socket */
 int AcceptTCPConnection(int servSock);  /* Accept TCP connection request */
 void PrintClients(int clientsAmount);
+void CreateClients(int clientsAmount);
+int UnservedClients(int clientsAmount);
 
 #endif //IHW3_UTILS_H

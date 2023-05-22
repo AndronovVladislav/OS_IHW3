@@ -10,11 +10,11 @@ int AcceptTCPConnection(int servSock) {
 
     /* Wait for a client to connect */
     if ((clntSock = accept(servSock, (struct sockaddr *) &echoClntAddr,
-           &clntLen)) < 0)
+           &clntLen)) < 0) {
         DieWithError("accept() failed");
+    }
 
     /* clntSock is connected to a client! */
-
     printf("Handling client %s\n", inet_ntoa(echoClntAddr.sin_addr));
 
     return clntSock;

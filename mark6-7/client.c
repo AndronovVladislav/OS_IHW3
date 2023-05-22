@@ -1,4 +1,4 @@
-#include "../utils.h"
+#include "../Other/utils.h"
 
 int main(int argc, char *argv[]) {
     if ((argc < 3) || (argc > 4)) {
@@ -40,15 +40,6 @@ int main(int argc, char *argv[]) {
         if (send(sock, &sellerNumber, sizeof(sellerNumber), 0) != sizeof(sellerNumber)) {
             DieWithError("send() failed");
         }
-
-        // if ((bytesRcvd = recv(sock, &clientBuffer, RCVBUFSIZE, 0)) <= 0) {
-        //     DieWithError("recv() failed or connection closed prematurely");
-        // }
-
-        // if (clientBuffer.currentSeller == sellerNumber) {
-        //     // sleep(rand() % 4);
-        //     ++clientBuffer.currentSeller;
-        // }
 
         if ((bytesRcvd = recv(sock, &sellerNumber, sizeof(sellerNumber), 0)) <= 0) {
             DieWithError("recv() failed or connection closed prematurely");
